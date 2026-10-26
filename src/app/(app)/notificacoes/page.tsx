@@ -109,8 +109,8 @@ export default function NotificationsPage() {
         </Button>
       </div>
 
-      <Card className="border-teal-200 bg-teal-50/60">
-        <CardContent className="flex gap-3 p-4 text-sm text-teal-950">
+      <Card className="border-rose-200 bg-rose-50/70">
+        <CardContent className="flex gap-3 p-4 text-sm text-rose-950">
           <BellOff className="mt-0.5 h-4 w-4 shrink-0" />
           <div>
             O campo <code>reminderMinutes</code> apenas define quando o lembrete

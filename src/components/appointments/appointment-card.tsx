@@ -23,7 +23,7 @@ export function AppointmentCard({
     <Link href={`/compromissos/${appointment.id}`}>
       <Card
         className={cn(
-          "transition hover:border-teal-300 hover:shadow-md",
+          "transition-all duration-300 hover:-translate-y-1 hover:border-rose-300 hover:shadow-[0_18px_36px_-22px_rgba(163,68,98,0.55)]",
           appointment.status === "cancelado" && "opacity-60"
         )}
       >

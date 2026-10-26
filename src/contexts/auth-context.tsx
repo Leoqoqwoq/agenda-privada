@@ -51,7 +51,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const p = await ensureUserProfile(
       u.uid,
       u.email ?? "",
-      u.displayName || u.email?.split("@")[0] || "Usuária"
+      u.displayName || "Leticia"
     );
     setProfile(p);
   }, []);

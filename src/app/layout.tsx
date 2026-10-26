@@ -1,27 +1,27 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Fraunces, Manrope } from "next/font/google";
+import { Cormorant_Garamond, Nunito } from "next/font/google";
 import { Toaster } from "sonner";
 import { AuthProvider } from "@/contexts/auth-context";
 import { AuthGate } from "@/components/auth/auth-gate";
 import "./globals.css";
 
-const display = Fraunces({
+const display = Cormorant_Garamond({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
 });
 
-const body = Manrope({
+const body = Nunito({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Agenda Privada",
+  title: "Agenda da Leticia",
   description:
-    "Agenda pessoal segura para clientes, consultas médicas e compromissos.",
+    "Agenda pessoal e privada da Leticia: clientes, saude e compromissos com carinho.",
 };
 
 export default function RootLayout({
@@ -35,7 +35,7 @@ export default function RootLayout({
         <AuthProvider>
           <Suspense
             fallback={
-              <div className="flex min-h-screen items-center justify-center bg-[var(--app-bg)] text-stone-500">
+              <div className="flex min-h-screen items-center justify-center bg-[var(--app-bg)] text-[var(--ink-soft)]">
                 Carregando…
               </div>
             }

@@ -44,7 +44,7 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   if (status === "loading") {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[var(--app-bg)]">
-        <Loader2 className="h-8 w-8 animate-spin text-teal-700" />
+        <Loader2 className="h-8 w-8 animate-spin text-[var(--rose)]" />
       </div>
     );
   }
@@ -52,7 +52,7 @@ export function AuthGate({ children }: { children: React.ReactNode }) {
   if (!isPublic && status !== "authenticated") {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[var(--app-bg)]">
-        <Loader2 className="h-8 w-8 animate-spin text-teal-700" />
+        <Loader2 className="h-8 w-8 animate-spin text-[var(--rose)]" />
       </div>
     );
   }

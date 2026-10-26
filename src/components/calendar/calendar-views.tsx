@@ -84,8 +84,10 @@ export function CalendarViews({
               key={m}
               onClick={() => onModeChange(m)}
               className={cn(
-                "rounded-lg px-3 py-1.5 text-sm capitalize",
-                mode === m ? "bg-teal-700 text-white" : "text-stone-600 hover:bg-stone-50"
+                "rounded-lg px-3 py-1.5 text-sm capitalize transition-all duration-300",
+                mode === m
+                  ? "bg-[var(--rose)] text-white shadow-sm"
+                  : "text-[var(--ink-soft)] hover:bg-rose-50"
               )}
             >
               {m === "day" ? "Dia" : m === "week" ? "Semana" : "Mês"}
@@ -154,8 +156,8 @@ function WeekView({
             key={key}
             onClick={() => onSelectDay(day)}
             className={cn(
-              "min-h-36 rounded-2xl border border-stone-200 bg-white/80 p-3 text-left transition hover:border-teal-300",
-              isSameDay(day, new Date()) && "ring-2 ring-teal-600/30"
+              "min-h-36 rounded-2xl border border-rose-100 bg-white/80 p-3 text-left transition-all duration-300 hover:-translate-y-0.5 hover:border-rose-300 hover:shadow-md",
+              isSameDay(day, new Date()) && "ring-2 ring-[var(--rose)]/35"
             )}
           >
             <p className="text-xs font-medium uppercase text-stone-400">
@@ -216,9 +218,9 @@ function MonthView({
               key={key}
               onClick={() => onSelectDay(day)}
               className={cn(
-                "min-h-20 rounded-xl border border-stone-200 bg-white/70 p-2 text-left transition hover:border-teal-300",
+                "min-h-20 rounded-xl border border-rose-100 bg-white/70 p-2 text-left transition-all duration-300 hover:border-rose-300 hover:bg-rose-50/50",
                 !inMonth && "opacity-40",
-                isSameDay(day, new Date()) && "ring-2 ring-teal-600/30"
+                isSameDay(day, new Date()) && "ring-2 ring-[var(--rose)]/35"
               )}
             >
               <p className="text-sm font-medium">{format(day, "d")}</p>

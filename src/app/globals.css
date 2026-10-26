@@ -1,16 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f7f4ef;
-  --foreground: #1c1917;
-  --app-bg: #f7f4ef;
+  --background: #fff6f8;
+  --foreground: #3f2a32;
+  --app-bg: #fff6f8;
   --card: #ffffff;
-  --teal: #0f766e;
+  --rose: #c45c7a;
+  --rose-deep: #a34462;
+  --blush: #f8dce4;
+  --petal: #ffe8ef;
+  --ink-soft: #6b4f5a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-rose: var(--rose);
+  --color-rose-deep: var(--rose-deep);
+  --color-blush: var(--blush);
+  --color-petal: var(--petal);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
 }
@@ -22,5 +30,123 @@ body {
 }
 
 ::selection {
-  background: color-mix(in oklab, #0f766e 25%, white);
+  background: color-mix(in oklab, var(--rose) 28%, white);
+  color: var(--foreground);
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) scale(1.03);
+  }
+}
+
+@keyframes petal-drift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(12px, -18px, 0) rotate(8deg);
+    opacity: 0.55;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nav-in {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.page-enter {
+  animation: page-enter 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.stagger-children > * {
+  animation: fade-up 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.stagger-children > *:nth-child(1) {
+  animation-delay: 0.04s;
+}
+.stagger-children > *:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.stagger-children > *:nth-child(3) {
+  animation-delay: 0.16s;
+}
+.stagger-children > *:nth-child(4) {
+  animation-delay: 0.22s;
+}
+.stagger-children > *:nth-child(5) {
+  animation-delay: 0.28s;
+}
+.stagger-children > *:nth-child(6) {
+  animation-delay: 0.34s;
+}
+.stagger-children > *:nth-child(7) {
+  animation-delay: 0.4s;
+}
+.stagger-children > *:nth-child(8) {
+  animation-delay: 0.46s;
+}
+
+.ambient-orb {
+  animation: soft-float 9s ease-in-out infinite;
+}
+
+.ambient-orb-delay {
+  animation: soft-float 11s ease-in-out infinite 1.4s;
+}
+
+.petal-drift {
+  animation: petal-drift 8s ease-in-out infinite alternate;
+}
+
+.nav-item-enter {
+  animation: nav-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  .stagger-children > *,
+  .ambient-orb,
+  .ambient-orb-delay,
+  .petal-drift,
+  .nav-item-enter {
+    animation: none !important;
+  }
 }

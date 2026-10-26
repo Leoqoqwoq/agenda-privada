@@ -11,10 +11,10 @@ export const CATEGORY_LABELS: Record<AppointmentCategory, string> = {
 };
 
 export const CATEGORY_COLORS: Record<AppointmentCategory, string> = {
-  cliente: "bg-teal-100 text-teal-800 border-teal-200",
-  consulta_medica: "bg-sky-100 text-sky-800 border-sky-200",
-  exame_medico: "bg-violet-100 text-violet-800 border-violet-200",
-  compromisso_pessoal: "bg-amber-100 text-amber-800 border-amber-200",
+  cliente: "bg-rose-100 text-rose-800 border-rose-200",
+  consulta_medica: "bg-pink-100 text-pink-800 border-pink-200",
+  exame_medico: "bg-fuchsia-50 text-fuchsia-800 border-fuchsia-200",
+  compromisso_pessoal: "bg-orange-50 text-orange-800 border-orange-200",
   outros: "bg-stone-100 text-stone-700 border-stone-200",
 };
 

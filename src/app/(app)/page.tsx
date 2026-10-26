@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Plus } from "lucide-react";
+import { Plus, Sparkles } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { AppointmentCard } from "@/components/appointments/appointment-card";
@@ -16,19 +16,25 @@ export default function DashboardPage() {
   const { profile } = useAuth();
   const { items, loading } = useAppointments({ from: today, to: today });
   const active = items.filter((a) => a.status !== "cancelado");
+  const firstName =
+    profile?.displayName &&
+    profile.displayName !== profile.email?.split("@")[0]
+      ? profile.displayName.split(" ")[0]
+      : "Leticia";
 
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p className="text-sm text-stone-500 capitalize">
+          <p className="text-sm capitalize text-[var(--ink-soft)]">
             {format(nowInSaoPaulo(), "EEEE, d 'de' MMMM", { locale: ptBR })}
           </p>
-          <h1 className="font-[family-name:var(--font-display)] text-3xl tracking-tight text-stone-900 md:text-4xl">
-            Olá, {profile?.displayName?.split(" ")[0] || "bem-vinda"}
+          <h1 className="font-[family-name:var(--font-display)] text-4xl font-semibold tracking-tight text-[var(--rose-deep)] md:text-5xl">
+            Olá, {firstName}
           </h1>
-          <p className="mt-1 text-stone-600">
-            Seus compromissos de hoje, organizados com clareza.
+          <p className="mt-2 flex items-center gap-2 text-[var(--ink-soft)]">
+            <Sparkles className="h-4 w-4 text-[var(--rose)]" />
+            Seu dia organizado com leveza e clareza.
           </p>
         </div>
         <Button asChild>
@@ -39,35 +45,41 @@ export default function DashboardPage() {
         </Button>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-3">
-        <Card>
+      <div className="stagger-children grid gap-4 sm:grid-cols-3">
+        <Card className="hover:-translate-y-1">
           <CardHeader>
-            <CardTitle className="text-base text-stone-500">Hoje</CardTitle>
+            <CardTitle className="text-base text-[var(--ink-soft)]">
+              Hoje
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="font-[family-name:var(--font-display)] text-3xl">
+            <p className="font-[family-name:var(--font-display)] text-4xl text-[var(--rose-deep)]">
               {loading ? "—" : active.length}
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="hover:-translate-y-1">
           <CardHeader>
-            <CardTitle className="text-base text-stone-500">Concluídos</CardTitle>
+            <CardTitle className="text-base text-[var(--ink-soft)]">
+              Concluídos
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="font-[family-name:var(--font-display)] text-3xl">
+            <p className="font-[family-name:var(--font-display)] text-4xl text-[var(--rose-deep)]">
               {loading
                 ? "—"
                 : items.filter((a) => a.status === "concluido").length}
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="hover:-translate-y-1">
           <CardHeader>
-            <CardTitle className="text-base text-stone-500">Cancelados</CardTitle>
+            <CardTitle className="text-base text-[var(--ink-soft)]">
+              Cancelados
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="font-[family-name:var(--font-display)] text-3xl">
+            <p className="font-[family-name:var(--font-display)] text-4xl text-[var(--rose-deep)]">
               {loading
                 ? "—"
                 : items.filter((a) => a.status === "cancelado").length}
@@ -77,22 +89,26 @@ export default function DashboardPage() {
       </div>
 
       <section className="space-y-3">
-        <h2 className="font-[family-name:var(--font-display)] text-xl">
+        <h2 className="font-[family-name:var(--font-display)] text-2xl text-[var(--rose-deep)]">
           Agenda do dia
         </h2>
         {loading ? (
-          <p className="text-sm text-stone-500">Carregando…</p>
+          <p className="text-sm text-[var(--ink-soft)]">Carregando…</p>
         ) : active.length === 0 ? (
           <Card>
-            <CardContent className="p-8 text-center text-stone-500">
-              Nenhum compromisso para hoje. Que tal agendar o próximo?
+            <CardContent className="p-8 text-center text-[var(--ink-soft)]">
+              Nenhum compromisso para hoje. Que tal reservar um momento especial?
             </CardContent>
           </Card>
         ) : (
-          active
-            .slice()
-            .sort((a, b) => a.startTime.localeCompare(b.startTime))
-            .map((a) => <AppointmentCard key={a.id} appointment={a} />)
+          <div className="stagger-children space-y-3">
+            {active
+              .slice()
+              .sort((a, b) => a.startTime.localeCompare(b.startTime))
+              .map((a) => (
+                <AppointmentCard key={a.id} appointment={a} />
+              ))}
+          </div>
         )}
       </section>
     </div>

@@ -33,12 +33,18 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[var(--app-bg)] px-4">
-      <Card className="w-full max-w-md">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[var(--app-bg)] px-4">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="ambient-orb absolute left-[-10%] top-[-10%] h-80 w-80 rounded-full bg-[#ffd6e3]/60 blur-3xl" />
+        <div className="ambient-orb-delay absolute bottom-[-10%] right-[-5%] h-96 w-96 rounded-full bg-[#f7c4d6]/50 blur-3xl" />
+      </div>
+      <Card className="page-enter relative w-full max-w-md border-rose-100/90">
         <CardHeader>
-          <CardTitle className="text-2xl">Recuperar senha</CardTitle>
+          <CardTitle className="text-3xl text-[var(--rose-deep)]">
+            Recuperar senha
+          </CardTitle>
           <CardDescription>
-            Enviaremos um link de redefinição para o e-mail cadastrado no Firebase.
+            Enviaremos um link de redefinição para o e-mail cadastrado.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -69,7 +75,10 @@ export default function ResetPasswordPage() {
                 Enviar link
               </Button>
               <p className="text-center text-sm">
-                <Link href="/login" className="text-teal-700 hover:underline">
+                <Link
+                  href="/login"
+                  className="text-[var(--rose)] transition-colors hover:text-[var(--rose-deep)] hover:underline"
+                >
                   Voltar ao login
                 </Link>
               </p>
