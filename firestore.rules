@@ -1,23 +1,14 @@
-rules_version = '2';
+﻿rules_version = '2';
 
 /**
  * Regras restritivas da Agenda Privada.
- *
- * IMPORTANTE: substitua AUTHORIZED_UID_AQUI pelo UID real da proprietária
- * (Firebase Console → Authentication → Users → User UID).
- *
- * Publicar:
- *   firebase deploy --only firestore:rules
- *
- * Testar no Rules Playground (Console → Firestore → Rules → Rules Playground)
- * ou com o Emulator Suite.
+ * UID autorizado: yj7RB5uNM8NlLa645nyNs0HA9t73
  */
 service cloud.firestore {
   match /databases/{database}/documents {
-    // UID autorizado da proprietária da agenda — altere antes de publicar
     function isOwner() {
       return request.auth != null
-        && request.auth.uid == 'AUTHORIZED_UID_AQUI';
+        && request.auth.uid == 'yj7RB5uNM8NlLa645nyNs0HA9t73';
     }
 
     function isOwnerPath(uid) {
@@ -62,7 +53,6 @@ service cloud.firestore {
       }
     }
 
-    // Negação explícita para qualquer outro caminho
     match /{document=**} {
       allow read, write: if false;
     }
